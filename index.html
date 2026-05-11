@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocketClaw | Professional SSH & Tunnel Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0B0B0B;
+            --surface-color: #161616;
+            --container-color: #1F1F1F;
+            --primary-color: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary-color: #10B981;
+            --text-main: #FFFFFF;
+            --text-muted: #F3F4F6;
+            --font-main: 'Exo 2', sans-serif;
+            --radius-md: 12px;
+            --radius-lg: 24px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        a:hover {
+            color: #34D399; /* Emerald 400 */
+        }
+
+        /* Container & Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            background-color: var(--surface-color);
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2A2A2A;
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--surface-color);
+            border-radius: var(--radius-lg);
+            margin-top: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2A2A2A;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            letter-spacing: 0.5px;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* Logo Container */
+        .mascot-container {
+            margin: 0 auto 30px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--container-color);
+            border: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .mascot-container:hover {
+            transform: scale(1.05);
+        }
+
+        .mascot-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .mascot-alt-text {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            text-align: center;
+            display: none; /* Hide the alt text for cleaner look */
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-card {
+            background-color: var(--container-color);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid #2A2A2A;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Support Section */
+        .support-box {
+            text-align: center;
+        }
+
+        .email-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        .email-link:hover {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Legal Content */
+        .legal-content {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .legal-content h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            border-bottom: 1px solid #2A2A2A;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+
+        .legal-content strong {
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #2A2A2A;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer nav {
+            margin-bottom: 15px;
+        }
+
+        footer nav a {
+            margin: 0 10px;
+            color: var(--text-muted);
+        }
+
+        footer nav a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="hero">
+            <div class="mascot-container">
+                <img src="mole-mascot.png" alt="Friendly mole mascot">
+                <span class="mascot-alt-text"></span>
+            </div>
+            <h1>SocketClaw</h1>
+            <div class="tagline">Dig Secure Tunnels. Manage Networks with a Smile.</div>
+            <p>Professional-grade SSH and Tunnel Management, built right into your Android device.</p>
+        </div>
+
+        <section id="features">
+            <h2>Underground Network Mastery</h2>
+            <p>SocketClaw is designed for developers, sysadmins, and network enthusiasts who need reliable, robust tunneling capabilities on the go. Navigate complex network architectures with an approachable interface and powerful under-the-hood tooling.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Port Forwarding</h3>
+                    <p>Effortlessly set up local, remote, and dynamic (SOCKS5) port forwarding to route your traffic exactly where it needs to go.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multi-Hop Connections</h3>
+                    <p>String together multiple SSH servers to reach deeply isolated private networks securely.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Custom Terminal</h3>
+                    <p>Execute commands with a built-in, fully customizable terminal tailored for mobile workflows.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Identity Management</h3>
+                    <p>Organize and securely apply your SSH key pairs and profiles with a few taps.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="support-box">
+            <h2>Need a Paw?</h2>
+            <p>Hit a bedrock layer? Whether you're dealing with a bug, need help configuring a tricky proxy, or just want to suggest a new feature, we're here to help you dig out.</p>
+            <a href="mailto:coreclaw.dev@gmail.com" class="email-link">coreclaw.dev@gmail.com</a>
+        </section>
+
+        <section id="privacy" class="legal-content">
+            <h2>Privacy Policy</h2>
+            <p><strong>Last Updated:</strong> May 11, 2026</p>
+            <p>CoreClaw-Dev built the SocketClaw app as a Freemium/Ad-Supported application. This SERVICE is provided by CoreClaw-Dev and is intended for use as is.</p>
+
+            <h3>1. Information Collection and Use</h3>
+            <p>SocketClaw is a network utility tool designed to establish secure SSH connections and tunnels. <strong>We do not monitor, log, intercept, or collect your network traffic or browsing data.</strong> All data routed through tunnels created by the application remains strictly between your device and the destination servers you configure.</p>
+
+            <h3>2. Local Storage & SSH Keys</h3>
+            <p>Any SSH credentials, private keys, passwords, and server configurations you input are stored strictly locally on your device. CoreClaw-Dev does not have access to your server credentials or private keys, and this information is never transmitted to our servers.</p>
+
+            <h3>3. Third-Party Services</h3>
+            <p>While the core utility operates locally, the app does utilize third-party services that may collect information used to identify you, primarily for the purposes of monetization and premium upgrades. These services include:</p>
+            <ul>
+                <li><strong>Google AdMob:</strong> Used to display advertisements within the free version of the app. AdMob may use device identifiers and personalized ad data based on your Google account preferences.</li>
+                <li><strong>Google Play Billing:</strong> Used to process in-app purchases (e.g., upgrading to a premium, ad-free version). Payment information is handled securely by Google; CoreClaw does not store your payment details.</li>
+            </ul>
+
+            <h3>4. Contact Us</h3>
+            <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <strong>coreclaw.dev@gmail.com</strong>.</p>
+        </section>
+
+        <section id="terms" class="legal-content">
+            <h2>Terms of Service</h2>
+            <p><strong>Last Updated:</strong> May 11, 2026</p>
+
+            <h3>1. Terms</h3>
+            <p>By downloading or using the SocketClaw app, these terms will automatically apply to you. You should make sure therefore that you read them carefully before using the app. You are not allowed to copy or modify the app, any part of the app, or our trademarks in any way.</p>
+
+            <h3>2. Use License</h3>
+            <p>This application is intended for legal, authorized network administration and personal utility. You agree not to use SocketClaw to gain unauthorized access to computer systems, networks, or data. CoreClaw assumes no responsibility for any illegal or unauthorized activities conducted using this tool.</p>
+
+            <h3>3. Disclaimer</h3>
+            <p>The materials on the SocketClaw application are provided on an 'as is' basis. CoreClaw makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+
+            <h3>4. Limitations</h3>
+            <p>In no event shall CoreClaw or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use SocketClaw, even if CoreClaw has been notified orally or in writing of the possibility of such damage.</p>
+        </section>
+
+        <footer>
+            <nav>
+                <a href="#privacy">Privacy Policy</a> | 
+                <a href="#terms">Terms of Service</a> | 
+                <a href="#support">Contact</a>
+            </nav>
+            <div>&copy; 2026 CoreClaw. All rights reserved.</div>
+        </footer>
+
+    </div>
+</body>
+</html>
